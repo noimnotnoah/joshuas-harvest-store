@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua's Harvest Store — Gourmet Country Store, Ottery St Mary</title>
+    <meta name="description" content="Joshua's Harvest Store: gourmet country store at Gosford Road, Ottery St Mary. West Country food, local produce, fine wines & artisan goods.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #2d2a24;
+            background: #faf8f5;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: #4a7c59; text-decoration: none; }
+        a:hover { color: #3a6649; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── header / hero ── */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(20, 30, 20, 0.65) 0%, rgba(40, 55, 35, 0.45) 100%),
+                url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80') center / cover no-repeat;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            padding: 40px 24px;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+        .hero h1 span { display: block; font-size: clamp(1rem, 2.5vw, 1.5rem); font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.9; margin-top: 0.75rem; }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.92;
+            margin: 1.5rem 0 2rem;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #d9a25f;
+            color: #1e2a1a;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 14px 36px;
+            border-radius: 50px;
+            transition: background 0.25s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .hero-cta:hover { background: #e8b872; transform: translateY(-2px); color: #1e2a1a; }
+
+        /* ── nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+        nav.scrolled { background: rgba(250,248,245,0.92); backdrop-filter: blur(12px); box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+        nav .container { display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.35rem; color: #2d2a24; }
+        .nav-links { display: flex; gap: 28px; list-style: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a { color: #2d2a24; transition: color 0.2s; }
+        .nav-links a:hover { color: #4a7c59; }
+
+        /* ── sections ── */
+        section { padding: 90px 0; }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+        .section-sub {
+            text-align: center;
+            color: #6b655a;
+            max-width: 620px;
+            margin: 0 auto 50px;
+            font-size: 1.05rem;
+        }
+
+        /* about */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-grid img { border-radius: 16px; width: 100%; height: 400px; object-fit: cover; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+        .about-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1.25rem; }
+        .about-text p { color: #4a453d; margin-bottom: 1rem; }
+
+        /* produce grid */
+        .produce-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+        .produce-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 20px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .produce-card:hover { transform: translateY(-6px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .produce-card .icon { font-size: 2.2rem; margin-bottom: 12px; }
+        .produce-card h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; color: #2d2a24; }
+        .produce-card p { font-size: 0.85rem; color: #6b655a; margin-top: 6px; }
+
+        /* contact */
+        .contact-wrap {
+            background: #2d2a24;
+            color: #f0ece4;
+            border-radius: 24px;
+            padding: 64px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+        .contact-wrap h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); color: #f0ece4; margin-bottom: 1rem; }
+        .contact-details p { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .contact-details strong { color: #d9a25f; }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: #f0ece4;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus { border-color: #d9a25f; }
+        .contact-form textarea { resize: vertical; min-height: 100px; }
+        .contact-form button {
+            background: #d9a25f;
+            color: #1e2a1a;
+            font-weight: 600;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover { background: #e8b872; }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #6b655a;
+            font-size: 0.85rem;
+            border-top: 1px solid #e8e2d8;
+        }
+        footer .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+        footer .footer-links a { color: #6b655a; font-size: 0.85rem; }
+
+        /* ── responsive ── */
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-wrap { grid-template-columns: 1fr; padding: 40px 24px; }
+            .nav-links { display: none; }
+            .hero { min-height: 70vh; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- nav -->
+<nav id="navbar">
+    <div class="container">
+        <a href="#" class="nav-logo">Joshua's Harvest Store</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#produce">Produce</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- hero -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <h1>
+            Joshua's Harvest Store
+            <span>Gourmet Country Store</span>
+        </h1>
+        <p>West Country food, artisan produce &amp; fine wines at Gosford Road, Ottery St Mary. Welcome to the taste of Devon.</p>
+        <a href="#contact" class="hero-cta">Visit Us →</a>
+    </div>
+</section>
+
+<!-- about -->
+<section id="about">
+    <div class="container about-grid">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&q=80" alt="Fresh seasonal produce at Joshua's Harvest Store" loading="lazy">
+        <div class="about-text">
+            <h2>Our Story</h2>
+            <p>Nestled on Gosford Road in the heart of Ottery St Mary, Joshua's Harvest Store is a family-run gourmet country store celebrating the finest West Country food. We carefully source seasonal produce, artisan cheeses, cured meats, freshly baked breads, and an exceptional selection of wines and craft ales from Devon and beyond.</p>
+            <p>Whether you're planning a countryside picnic, a Sunday roast, or simply looking for that perfect local gift, our shelves are stocked with care and provenance.</p>
+        </div>
+    </div>
+</section>
+
+<!-- produce -->
+<section id="produce">
+    <div class="container">
+        <h2 class="section-title">What We Offer</h2>
+        <p class="section-sub">From field to fork — the very best of the South West, hand-picked for you.</p>
+        <div class="produce-grid">
+            <div class="produce-card">
+                <div class="icon">🧀</div>
+                <h3>Artisan Cheese</h3>
+                <p>West Country cheddars, blue cheeses &amp; soft-ripened favourites</p>
+            </div>
+            <div class="produce-card">
+                <div class="icon">🍞</div>
+                <h3>Fresh Bakery</h3>
+                <p>Sourdough, rye, ciabatta &amp; seasonal pastries baked daily</p>
+            </div>
+            <div class="produce-card">
+                <div class="icon">🥩</div>
+                <h3>Butchery &amp; Cured Meats</h3>
+                <p>Grass-fed Devon beef, free-range pork &amp; house-cured charcuterie</p>
+            </div>
+            <div class="produce-card">
+                <div class="icon">🍷</div>
+                <h3>Wine &amp; Spirits</h3>
+                <p>Curated bottles from Devon vineyards &amp; celebrated European growers</p>
+            </div>
+            <div class="produce-card">
+                <div class="icon">🍯</div>
+                <h3>Local Preserves</h3>
+                <p>Chutneys, jams, honey &amp; pickles from small-batch Devon producers</p>
+            </div>
+            <div class="produce-card">
+                <div class="icon">🌿</div>
+                <h3>Seasonal Produce</h3>
+                <p>Fresh fruit &amp; vegetables straight from local farms</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- contact -->
+<section id="contact">
+    <div class="container contact-wrap">
+        <div class="contact-details">
+            <h2>Get in Touch</h2>
+            <p>📍 Gosford Road, Ottery St Mary, Devon EX11 1NU</p>
+            <p>📞 <strong>01404 815473</strong></p>
+            <p>✉️ <strong>info@joshuasharveststore.co.uk</strong></p>
+            <p style="margin-top: 24px; opacity: 0.8; font-size: 0.95rem;">Tuesday – Saturday: 9:00 – 17:00<br>Sunday &amp; Monday: closed</p>
+            <p style="margin-top: 24px; opacity: 0.85;">Stop by and taste the best of Devon — we look forward to welcoming you.</p>
+        </div>
+        <form class="contact-form" action="#" method="post">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- footer -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#produce">Produce</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>&copy; 2026 Joshua's Harvest Store. All rights reserved. | Gosford Road, Ottery St Mary, Devon EX11 1NU</p>
+    </div>
+</footer>
+
+<script>
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+</script>
+</body>
+</html>
